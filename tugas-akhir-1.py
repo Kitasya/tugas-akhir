@@ -8,4 +8,4 @@ class Tiktekto:
         self.background = (224, 241, 244)
         self.color_game = (0, 55, 61)
         self.screen = pygame.display.set_mode(self.size)
-        print("Hello")
+        
