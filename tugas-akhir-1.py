@@ -20,3 +20,5 @@ class Tiktekto:
 
 if __name__ == "__main__":
     Tiktekto()
+
+#Syasya
