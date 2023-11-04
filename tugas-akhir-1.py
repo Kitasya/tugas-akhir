@@ -16,7 +16,21 @@ class Tiktekto:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+                self.gambar_border()
                 pygame.display.flip()
+    
+    def gambar_border(self):
+        screen_width, screen_height = self.size
+
+        garis = [
+
+            {
+                'start' : [],
+                'end' : []
+            },
+
+        ]
 
 if __name__ == "__main__":
     Tiktekto()
