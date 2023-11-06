@@ -3,31 +3,31 @@ import sys
 
 class Tiktekto:
     def __init__(self):
-        pygame.init()
+        pygame.init() # biar pygame ny bs dipakek
         
-        self.size = width, height = 640, 320
+        self.size = lebar, tinggi = 640, 320
         self.background = (224, 241, 244)
-        self.color_game = (0, 55, 61)
-        self.screen = pygame.display.set_mode(self.size)
+        self.warna_game = (0, 55, 61) # Red, Green, Blue
+        self.screen = pygame.display.set_mode(self.size) # buat nampilin
 
     def main_game(self):
         while True:
-            self.screen.fill(self.background)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            self.screen.fill(self.background) # ngisi layar pake background di atas, jd setiap permainan baru, dia bakal munculin latar baru terus
+            for event in pygame.event.get(): # untuk semua event yg terjd
+                if event.type == pygame.QUIT: # klo ad yg keluat, berarti ya keluar dr gamenya
                     sys.exit()
 
                 self.gambar_border()
-                pygame.display.flip()
+                pygame.display.flip() # manggil fungsi untuk memperbaharui setiap layar setiap add perubahan
     
     def gambar_border(self):
-        screen_width, screen_height = self.size
+        screen_lebar, screen_tinggi = self.size
 
         garis = [
 
             {
-                'start' : [],
-                'end' : []
+                'Mulai' : [],
+                'Selesai' : []
             },
 
         ]
