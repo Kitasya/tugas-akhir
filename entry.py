@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import pandas as pd
 
+# Excel Data Entry Form
 sg.theme('DarkGreen4')
 
 EXCEL_FILE = 'Pendaftaran.xlsx'
