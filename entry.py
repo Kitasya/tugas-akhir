@@ -2,6 +2,8 @@ import PySimpleGUI as sg
 import csv
 import os
 
+sg.theme('DarkBlue')
+
 CSV_FILE = 'Pendaftaran.csv'
 
 if not os.path.exists(CSV_FILE):
@@ -10,29 +12,35 @@ if not os.path.exists(CSV_FILE):
         writer.writerow(['Nama', 'No Telp', 'Alamat', 'Tgl Lahir', 'Jenis Kelamin', 'Pekerjaan'])
 
 layout = [
-    [sg.Text('', size=(19, 1)), sg.Text('POSISI PEKERJAAN', font=('Comic Sans MS', 22), justification='center')],
-    [sg.Text('', size=(22, 1)), sg.Text('PERUSAHAAN', font=('Comic Sans MS', 22), justification='center')],
-    [sg.Text('Nama', size=(15, 1), font=('Comic Sans MS', 18)), sg.InputText(key='Nama', size=(30, 1), font=('Comic Sans MS', 18))],
-    [sg.Text('No Telp', size=(15, 1), font=('Comic Sans MS', 18)), sg.InputText(key='Tlp', size=(30, 1), font=('Comic Sans MS', 18))],
-    [sg.Text('Alamat', size=(15, 1), font=('Comic Sans MS', 18)), sg.Multiline(key='Alamat', size=(30, 3), font=('Comic Sans MS', 18))],
-    [sg.Text('Tgl Lahir', size=(15, 1), font=('Comic Sans MS', 18)),
-     sg.InputText(key='Tgl Lahir', size=(15, 1), font=('Comic Sans MS', 18)),
-     sg.CalendarButton('Kalender', target='Tgl Lahir', format=('%d-%m-%Y'), font=('Comic Sans MS', 18))],
-    [sg.Text('Jenis Kelamin', size=(15, 1), font=('Comic Sans MS', 18)),
-     sg.Combo(['pria', 'wanita'], key='Jenis Kelamin', size=(15, 1), font=('Comic Sans MS', 18))],
-    [sg.Text('Pekerjaan', size=(15, 1), font=('Comic Sans MS', 18)),
-     sg.Checkbox('Data Scientist', key='Data Scientist', font=('Comic Sans MS', 18)),
-     sg.Checkbox('Game Developer', key='Game Developer', font=('Comic Sans MS', 18)),
-     sg.Checkbox('Cyber Security', key='Cyber Security', font=('Comic Sans MS', 18))],
-    [sg.Button('Submit', size=(15, 1), font=('Comic Sans MS', 18)), sg.Button('Exit', size=(15, 1), font=('Comic Sans MS', 18))]
+    [sg.Text('Masukkan Data Kamu: ')],
+    [sg.Text('Nama', size=(15, 1)), sg.InputText(key='Nama')],
+    [sg.Text('No Telp', size=(15, 1)), sg.InputText(key='Tlp')],
+    [sg.Text('Alamat', size=(15, 1)), sg.Multiline(key='Alamat', size=(30, 3))],
+    [sg.Text('Tgl Lahir', size=(15, 1)),
+     sg.InputText(key='Tgl Lahir', size=(15, 1)),
+     sg.CalendarButton('Kalender', target='Tgl Lahir', format=('%d-%m-%Y'))],
+    [sg.Text('Jenis Kelamin', size=(15, 1)),
+     sg.Combo(['pria', 'wanita'], key='Jenis Kelamin', size=(15, 1))],
+    [sg.Text('Pekerjaan', size=(15, 1)),
+     sg.Checkbox('Data Scientist', key='Data Scientist'),
+     sg.Checkbox('Game Developer', key='Game Developer'),
+     sg.Checkbox('Cyber Security', key='Cyber Security')],
+    [sg.Button('Submit', size=(15, 1)), sg.Button('Clear', size=(15,1)), sg.Button('Exit', size=(15, 1))]
 ]
 
-window = sg.Window('Data Entry Form', layout, font=('Comic Sans MS', 18))
+window = sg.Window('Posisi Pekerjaan Perusahaan', layout)
+
+def bersihin():
+    for key in values:
+        window[key]('')
+    return None
 
 while True:
     event, values = window.read()  
     if event == sg.WIN_CLOSED or event == 'Exit':
         break 
+    elif event == 'Clear' :
+        bersihin()
     elif event == 'Submit':
         
         if not values['Nama'].replace(" ", "").isalpha():
@@ -64,5 +72,6 @@ while True:
                     key != 'Tgl Lahir' and key != 'Jenis Kelamin'])
                 ])
             sg.popup('Data berhasil disimpan!!!')
+            bersihin()
 
 window.close()
