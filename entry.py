@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import csv
 import os
+import pandas as pd
 
 sg.theme('DarkBlue')
 
@@ -10,6 +11,7 @@ if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Nama', 'No Telp', 'Alamat', 'Tgl Lahir', 'Jenis Kelamin', 'Pekerjaan'])
+
 
 layout = [
     [sg.Text('Masukkan Data Kamu: ')],
